@@ -1,2 +1,12 @@
 /* здесь используйте глобальные переменные */
+// шрифт
 $primary-font: "PT Sans Narrow", sans-serif; /* переменная для использования типа(начертание) шрифта */
+
+// цвета
+$darkgrey: #292929;
+$lightgrey: #f8f5f2;
+
+// ширина экрана
+$tablet-width: 768px;
+$desktop-width: 1200px;
+$mobile-width-only: 767px;
