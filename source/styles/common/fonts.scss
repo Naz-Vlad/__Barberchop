@@ -1,1 +1,4 @@
 /* здесь подключите шрифты */
+
+@include font-face("PT Sans Narrow", 400, normal, src("../fonts/pt-sans-400.woff2") format("woff2"));
+@include font-face("PT Sans Narrow", 700, normal, src("../fonts/pt-sans-400.woff2") format("woff2"))

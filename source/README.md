@@ -43,3 +43,42 @@
 ####                Подвал
 
 72 - добавим в блок подвала, блок-центровщик и три элемента. Все элементы будут заниматься позиционированием блоков, которые будут в них помещены.
+
+#### 4.25              Подключение шрифтов
+
+1 - нашел на сайте https://fonts.google.com/ нужный шрифт и скачал его.
+2 - заархивированные файлы поместил в папку fonts
+3 - в файле fonts.scss в стилях прописываем пути(src) до шрифтов
+4 - Проверка подключения: задаем в глабальных стилях
+body {
+  font-family: "PT Sans Narrow", sans-serif; // <sans-serif> - обязателен в проверке
+}
+
+5 - Если в проекте несколько начертаний(тип) одного шрифта, то он подключается с одинаковым названием, но с отличающимися настройками, для этого создаем для настроек микс:
+
+8-15 - созданный мексим подключаем в mixins.scss
+
+@mixin font-face($font-family, $font-weight, $font-style, $font-src) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-style: $font-style;
+    font-display: swap;
+    src: $font-src;
+  }
+}
+
+Обязательный момент при использовании: это порядок параметров миксина font-face($font-family, $font-weight, $font-style, $font-src). В каком порядке они указаны в таком порядке их нужно передавать.
+
+17 - в файле fonts.scss записываем:
+
+@include font-face("PT Sans Narrow", 400, normal, url("../fonts/pt-sans-400.woff2") format("woff2"));
+@include font-face("PT Sans Narrow", 700, normal, url("../fonts/pt-sans-700.woff2") format("woff2"));
+
+последовательность подключенных файлов, сперва миксимы, после них шрифты:
+
+@import "./common/mixins.scss";
+@import "./common/fonts.scss";
+
+19 - создаю переменную для типа шрифта в файле: @import "./common/variables.scss";
+$primary-font: "PT Sans Narrow", sans-serif; /* переменная для использования типа(начертание) шрифта */
