@@ -14,7 +14,11 @@
   <!-- шапка -->
   <header class="main-header">
     <a class="main-header__logo" href="#">
-      <img src="images/logotype-phone.svg" width="226" height="30" alt="Барбершоп «Бородинский».">
+      <picture>
+        <source media="(min-width: 1200px)" width="370" height="153" type="image/svg+xml" srcset="images/logotype-desktop.svg">
+        <source media="(min-width: 768px)" width="370" height="101" type="image/svg+xml" srcset="images/logotype-tablet.svg">
+        <img src="images/logotype-phone.svg" width="226" height="30" alt="Барбершоп «Бородинский».">
+      </picture>
     </a>
     <nav class="main-nav">
       <button class="main-nav__toggle" type="button">
