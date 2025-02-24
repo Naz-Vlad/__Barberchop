@@ -1,4 +1,6 @@
 .main-header {
+  display: flex;
+  flex-direction: column;
+  background-color: #242424;
   color: #ffffff;
-  padding: 10px 15px;
 }
