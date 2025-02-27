@@ -15,6 +15,10 @@
   width: auto;
   min-height: 51px;
   background-color: #826550;
+
+  @media (min-width: $tablet-width) {
+    background-color: #000000;
+  }
 }
 
 //базовые стили для кнопки переключения меню.
@@ -33,6 +37,10 @@
   &:hover,
   &:active {
     background-color: #624530;
+  }
+
+  @media (min-width: $tablet-width) {
+    display: none;
   }
 }
 
