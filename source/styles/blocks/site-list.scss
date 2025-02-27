@@ -8,3 +8,18 @@
     width: 780px;
   }
 }
+// ссылки в меню
+.site-list a {
+  position: relative;
+  display: block;
+  padding: 13px 21px;
+  padding-bottom: 13px;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  background-color: #826550;
+  border-top: 1px solid #886e5b;
+  border-bottom: 1px solid #71543f;
+}

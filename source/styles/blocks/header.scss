@@ -3,10 +3,6 @@
   flex-direction: column;
   background-color: #242424;
   color: #ffffff;
-
-  @media (min-width: $tablet-width) {
-    background-color: #000000;
-  }
 }
 
 .main-header__logo {

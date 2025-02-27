@@ -20,11 +20,8 @@
         <img src="images/logotype-phone.svg" width="226" height="30" alt="Барбершоп «Бородинский».">
       </picture>
     </a>
-    <nav class="main-nav">
+    <nav class="main-nav main-nav--closed main-nav--nojs">
       <button class="main-nav__toggle" type="button">
-        <svg class="main-nav__icon" width="16" height="16">
-          <use href="icons/stack.svg#menu_button"></use>
-        </svg>
         <span class="visually-hidden">Открыть меню</span>
       </button>
       <div class="main-nav__wrapper">
@@ -56,12 +53,14 @@
           </li>
         </ul>
         <div class="main-nav__list user-list">
-          <a class="user-list__login" href="login.html">
-            <svg class="user-list__login-icon" width="16" height="16">
-              <use href="img/sprite.svg#icon-login"></use>
-            </svg>
-            Войти
-          </a>
+          <li class="user-list__item">
+            <a class="user-list__login" href="login.html">
+              <svg class="user-list__login-icon" width="16" height="16">
+                <use href="icons/stack.svg#entrance_icon"></use>
+              </svg>
+              Войти
+            </a>
+          </li>
         </div>
       </div>
     </nav>
@@ -270,6 +269,7 @@
       </a>
     </div>
   </footer>
+  <script src="index.js"></script>
 </body>
 
 </html>

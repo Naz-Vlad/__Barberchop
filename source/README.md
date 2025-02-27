@@ -46,39 +46,111 @@
 
 #### 4.25              Подключение шрифтов
 
-1 - нашел на сайте https://fonts.google.com/ нужный шрифт и скачал его.
-2 - заархивированные файлы поместил в папку fonts
-3 - в файле fonts.scss в стилях прописываем пути(src) до шрифтов
-4 - Проверка подключения: задаем в глабальных стилях
-body {
-  font-family: "PT Sans Narrow", sans-serif; // <sans-serif> - обязателен в проверке
-}
-
-5 - Если в проекте несколько начертаний(тип) одного шрифта, то он подключается с одинаковым названием, но с отличающимися настройками, для этого создаем для настроек микс:
-
-8-15 - созданный мексим подключаем в mixins.scss
-
-@mixin font-face($font-family, $font-weight, $font-style, $font-src) {
-  @font-face {
-    font-family: $font-family;
-    font-weight: $font-weight;
-    font-style: $font-style;
-    font-display: swap;
-    src: $font-src;
+  1 - нашел на сайте https://fonts.google.com/ нужный шрифт и скачал его.
+  2 - заархивированные файлы поместил в папку fonts
+  3 - в файле fonts.scss в стилях прописываем пути(src) до шрифтов
+  4 - Проверка подключения: задаем в глабальных стилях
+  body {
+    font-family: "PT Sans Narrow", sans-serif; // <sans-serif> - обязателен в проверке
   }
-}
 
-Обязательный момент при использовании: это порядок параметров миксина font-face($font-family, $font-weight, $font-style, $font-src). В каком порядке они указаны в таком порядке их нужно передавать.
+  5 - Если в проекте несколько начертаний(тип) одного шрифта, то он подключается с одинаковым названием, но с отличающимися настройками, для этого создаем для настроек микс:
 
-17 - в файле fonts.scss записываем:
+  8-15 - созданный мексим подключаем в mixins.scss
 
-@include font-face("PT Sans Narrow", 400, normal, url("../fonts/pt-sans-400.woff2") format("woff2"));
-@include font-face("PT Sans Narrow", 700, normal, url("../fonts/pt-sans-700.woff2") format("woff2"));
+      @mixin font-face($font-family, $font-weight, $font-style, $font-src) {
+        @font-face {
+          font-family: $font-family;
+          font-weight: $font-weight;
+          font-style: $font-style;
+          font-display: swap;
+          src: $font-src;
+        }
+      }
 
-последовательность подключенных файлов, сперва миксимы, после них шрифты:
+  Обязательный момент при использовании: это порядок параметров миксина font-face($font-family, $font-weight, $font-style, $font-src). В каком порядке они указаны в таком порядке их нужно передавать.
 
-@import "./common/mixins.scss";
-@import "./common/fonts.scss";
+  17 - в файле fonts.scss записываем:
 
-19 - создаю переменную для типа шрифта в файле: @import "./common/variables.scss";
-$primary-font: "PT Sans Narrow", sans-serif; /* переменная для использования типа(начертание) шрифта */
+  @include font-face("PT Sans Narrow", 400, normal, url("../fonts/pt-sans-400.woff2") format("woff2"));
+  @include font-face("PT Sans Narrow", 700, normal, url("../fonts/pt-sans-700.woff2") format("woff2"));
+
+  последовательность подключенных файлов, сперва миксимы, после них шрифты:
+
+  @import "./common/mixins.scss";
+  @import "./common/fonts.scss";
+
+  19 - создаю переменную для типа шрифта в файле: @import "./common/variables.scss";
+  $primary-font: "PT Sans Narrow", sans-serif; /* переменная для использования типа(начертание) шрифта */
+
+####    (7.6-7.7) - Завершаем вёрстку навигации
+
+  2 - Добавил фон и размеры для навигации.
+
+  3 - Зададим базовые стили для кнопки переключения меню .main-nav__toggle
+
+  4, 5 - Дабавим в разметку класс = main-nav--closed состояние переключателя при закрытом меню(показ решотки) и пропишем для него стили
+
+  6, 7 - Дабавим в разметку класс = main-nav--opened состояние переключателя при открым меню(показ крестика) и пропишем для  него стили
+
+  8 - вручную классом main-nav--closed закроем меню
+
+  9 - Добавим в @import "./blocks/site-list.scss" стили ссылкам в меню. Не забываем про стилизацию ссылок в активном состоянии и в состоянии наведения - .site-list а
+
+  10 - в @import "./blocks/user-list.scss" стилизуем ссылку входа.user-list__login
+
+  11,12 - Добавляем иконку входа в разметку и пропишем ей стили
+
+  13, 14 - Открытие и закрытие меню должно быть реализовано только в мобильной версии. Когда меню закрыто, все пункты меню должны быть спрятаны
+
+    @media (max-width: $mobile-width-only) {
+      .main-nav--closed .site-list__item {
+        display: none;
+
+  15 -  &--active { ---- но активный пункт отобразим на странице
+          display: block;
+        }
+      }
+            // стили активной ссылки
+  16- .main-nav--closed .site-list__item--active a {
+        padding-right: 70px;
+        padding-left: 70px;
+        text-align: center;
+      }
+
+      .main-nav--closed .user-list__item {
+        display: none;
+      }
+    }
+
+    17 - классом main-nav--opened окроем меню.
+
+    18 - стилизуем открытое меню
+
+    19,20 - Добавим класс = main-nav--nojs навигации при выключенном JS кнопки не должны отображаться, а меню должно отоюражаться на всю ширину экран:
+
+    20 - .main-nav--nojs .main-nav__toggle { --- отключаем кнопки
+            display: none;
+          }
+
+    21 -  .main-nav--nojs .main-nav__wrapper { --- стили при выключенном JS
+            position: static;
+            min-height: 0;
+          }
+
+          .main-nav--nojs .site-list__item {
+            display: block;
+          }
+
+          .main-nav--nojs .site-list__item--active a {
+            padding-right: 21px;
+            padding-left: 21px;
+            text-align: left;
+          }
+
+          .main-nav--nojs .user-list__item {
+            display: block;
+            background-color: #6a4d38;
+          }
+
+    22 - Переведём меню в исходное состояние и добавим скрипт открытия и закрытия выподающего окна мобильного меню
