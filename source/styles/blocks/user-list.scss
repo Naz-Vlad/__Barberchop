@@ -23,9 +23,28 @@
 .user-list {
   @media (min-width: $tablet-width) {
     width: 60px;
-  }
 
-  @media (min-width: $desktop-width) {
-    width: 160px;
+    &__login-icon {
+      padding-top: 12px;
+    }
+
+    &:hover .user-list__login-icon {
+      opacity: 1;
+    }
+
+    &:active .user-list__login-icon {
+      opacity: 0.3;
+    }
+
+    &__login span {
+      display: none;
+    }
+
+    @media (min-width: $desktop-width) {
+      span {
+        display: block;
+        padding-top: 12px;
+      }
+    }
   }
 }
